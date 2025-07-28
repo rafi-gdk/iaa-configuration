@@ -1,25 +1,15 @@
 spring:
   cloud:
+    config:
+      enabled : false
     gateway:
-      globalcors:
-        corsConfigurations:
-          '[/**]':
-            allowedOrigins: "http://localhost:9000"
-            allowedHeaders: "*"
-            allowedMethods:
-              - GET
-              - POST
-              - OPTIONS
-              - DELETE
       routes:
-        - id: iaa service
+        - id: iaa-service
           uri: http://localhost:9001
           predicates:
             - Path=/iaa/**
-            #- Header=security,true
           filters:
-            #- AddRequestHeader=securityKey, securityValue
-            #- AddResponseHeader=securityKey, securityValue
+            - RewritePath=/local/(?<path>.*), /${path}
 iaa:
   staging-base-url: http://172.19.6.19:8080
   qa-base-url: http://10.3.1.11:8080
