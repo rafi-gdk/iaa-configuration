@@ -19,6 +19,3 @@ spring:
             #- Header=security,true
           filters:
             #- AddRequestHeader=securityKey, securityValue
-iaa:
-  staging-base-url: http://172.19.6.19:8080
-  qa-base-url: http://10.3.1.11:8080
