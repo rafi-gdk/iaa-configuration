@@ -1,0 +1,22 @@
+spring:
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:9000"
+            allowedHeaders: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - OPTIONS
+              - DELETE
+      routes:
+        - id: iaa service
+          uri: http://localhost:9001
+          predicates:
+            - Path=/iaa/**
+            #- Header=security,true
+          filters:
+            #- AddRequestHeader=securityKey, securityValue
+            #- AddResponseHeader=securityKey, securityValue
